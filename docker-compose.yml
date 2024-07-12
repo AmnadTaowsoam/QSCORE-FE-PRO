@@ -9,6 +9,7 @@ services:
       - "8001:8001" 
     networks:
       - app-network
+    restart: always  # ย้าย restart มาภายใต้ service
 
 networks:
   app-network:

@@ -12,6 +12,7 @@ const Register = lazy(() => import('./pages/Register'));
 const Qscore = lazy(() => import('./pages/Qscore'));
 const Logout = lazy(() => import('./pages/Logout'));
 const Users = lazy(() => import('./pages/Users'));
+const Support = lazy(() => import('./pages/Support'));
 
 // New component to handle redirection
 const AuthRedirect = () => {
@@ -39,7 +40,8 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<ProtectedRouteUser><Home /></ProtectedRouteUser>} />
               <Route path="/logout" element={<Logout />} />
-              <Route path="/users" element={<Users />} />
+              <Route path="/users" element={<ProtectedRouteSUser><Users /></ProtectedRouteSUser>} />
+              <Route path="/Support" element={<Support />} />
             </Routes>
           </Suspense>
         </AuthProvider>

@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 function Nav() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuopen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    console.log("Toggling menu:", !isMenuOpen);  // Debug log
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(!isMenuopen);
   };
 
   return (
-    <nav className="w-full bg-blue-900 p-4 text-white">
+    <nav className="w-full bg-blue-900 p-1 nav-header ">
       <div className="flex items-center justify-between">
-        <div className="text-2xl font-bold">Betagro</div>
+        <div className=" pl-2 text-white text-2xl font-bold">Betagro</div>
 
-        {/* Mobile menu toggle button */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
+        {/* Toggle menu bottom */}
+        <div className=" md:hidden">
+          <button id="menu-toggle" className=" text-white" onClick={toggleMenu}>
             <svg
               fill="none"
               stroke="currentColor"
@@ -24,44 +22,68 @@ function Nav() {
               strokeLinejoin="round"
               strokeWidth="2"
               viewBox="0 0 24 24"
-              className="h-6 w-6"
+              className=" w-6 h-6"
             >
-              <path d="M4 6h16M4 12h16m-16 6h16"></path>
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
 
-        {/* Links for large screens */}
-        <ul className={`md:flex hidden space-x-4`}>
-          <li><Link to="/" className="font-bold">Home</Link></li>
-          <li><Link to="/qscore" className="font-bold">Q-Score</Link></li>
-          {/* <li><Link to="/support" className="font-bold">Support</Link></li> */}
-          <li><Link to='/users' className='text-white text-base font-bold'>Account</Link></li>
-          <li><Link to="/sign-in" className="font-bold">Sign In</Link></li>
+        <ul className="menu menu-horizontal px-1">
           <li>
-            <details className="group">
-              <summary className="cursor-pointer">More</summary>
-              <ul className="absolute hidden group-hover:block bg-blue-800 p-2">
-                <li><Link to="/register" className="block text-sm px-2 py-1">Register</Link></li>
-                <li><Link to="/logout" className="block text-sm px-2 py-1">Log Out</Link></li>
+            <a href="/" className="text-white text-base font-bold">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/qscore" className="text-white text-base font-bold">
+              Qscore
+            </a>
+          </li>
+          <li>
+            <a href="/users" className="text-white text-base font-bold">
+              Users
+            </a>
+          </li>
+          <li>
+            <a href="/support" className="text-white text-base font-bold">
+              Support
+            </a>
+          </li>
+
+          <li>
+            <details>
+              <summary className="text-white text-xl">
+                <a href="/sign-in" className="text-white text-base font-bold">
+                  | Sign In
+                </a>
+              </summary>
+              <ul className="p-3 bg-blue-900 rounded-t-none ">
+                <li>
+                  <a href="/register" className="text-white text-sm">
+                    Register
+                  </a>
+                </li>
+                <li>
+                  <a href="/logout" className="text-white text-sm">
+                    Log Out
+                  </a>
+                </li>
               </ul>
             </details>
           </li>
         </ul>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <ul className="flex flex-col md:hidden absolute bg-blue-900 w-full left-0 top-[58px]">
-            <li><Link to="/" onClick={() => setIsMenuOpen(false)} className="block p-2 text-base font-bold">Home</Link></li>
-            <li><Link to="/qscore" onClick={() => setIsMenuOpen(false)} className="block p-2 text-base font-bold">Q-Score</Link></li>
-            {/* <li><Link to="/support" onClick={() => setIsMenuOpen(false)} className="block p-2 text-base font-bold">Support</Link></li> */}
-            <li><Link to='/users' onClick={() => setIsMenuOpen(false)} className="block p-2 text-base font-bold"><Account></Account></Link></li>
-            <li><Link to="/sign-in" onClick={() => setIsMenuOpen(false)} className="block p-2 text-base font-bold">Sign In</Link></li>
-            <li><Link to="/register" onClick={() => setIsMenuOpen(false)} className="block p-2 text-base font-bold">Register</Link></li>
-            <li><Link to="/logout" onClick={() => setIsMenuOpen(false)} className="block p-2 text-base font-bold">Log Out</Link></li>
-          </ul>
-        )}
       </div>
+
+      {/* mobile menu */}
+      {/* {isMenuopen ?(
+            <ul className='flex-col md:flex'>
+                    <li className='py-2'><a href='/' className='text-white text-xl'>Home</a></li>
+                    <li className='py-2'><a href='/q-score' className='text-white text-xl'>Qscore</a></li>
+                    <li className='py-2'><a href='/user' className='text-white text-xl'>UserMangement</a></li>
+                    <li className='py-2'><a href='/sign-in' className='text-white text-xl'>Sign In</a></li>
+                </ul>
+            ): null} */}
     </nav>
   );
 }
